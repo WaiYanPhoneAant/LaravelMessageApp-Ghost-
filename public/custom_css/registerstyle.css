@@ -1,0 +1,233 @@
+
+/*
+main color :6756F5;
+background color:1B1E32;
+danger-color:F55656;
+success color:56F579;
+active color:0496FF;
+
+
+*/
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --mainColor:#6756F5;
+    --bgColor:#1B1E32;
+    --danger:#F55656;
+    --active:#56c5f5;
+}
+/* reuseable */
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--bgColor);
+}
+.alert{
+    padding: 5px 20px;
+    display: inline-block;
+}
+.alert-danger{
+    color: var(--danger);
+}
+/* form and conatiner */
+.container{
+    width: 100%;
+    user-select: none;
+}
+.form-control{
+    width: 800px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 40px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form{
+    width: 70%;
+}
+.login-media{
+    width: 30%;
+}
+/* header */
+.header{
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    width: 100%;
+    margin-bottom: 40px;
+}
+/* input */
+.input{
+    width: 100% ;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.266);
+    outline: none;
+    user-select: none;
+}
+.input-gp{
+    margin: 10px;
+}
+.input input::placeholder{
+    color:#ffffff97;
+}
+.input input:focus{
+    border:1px solid #6756F5 ;
+    background-color:  rgba(255, 255, 255, 0.266);
+}
+
+.input input:target{
+    border:1px solid #6756F5 ;
+    background-color:  rgba(255, 255, 255, 0.266);
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+
+    background-color:  rgb(235, 1, 1);
+}
+.name-form{
+    display: flex;
+
+}
+.name{
+    width: 50%;
+}
+.mail-form{
+    display: flex;
+    align-items: center;
+
+}
+.mail{
+    width: 70%;
+    border-radius:10px 0px 0px 10px;
+}
+
+.ghostmail{
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.262);
+    color: white;
+    font-size: 15px;
+    padding: 9px 0px;
+    text-align: center;
+    color: #ffffff;
+    border-radius:0px 10px 10px 0px;
+    border: 1px solid #1B1E32;
+}
+.btn-gp{
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+.privcy-text{
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    color: rgba(255, 255, 255, 0.452);
+}
+.privcy-text a{
+    color: var(--active);
+
+}
+.register-btn{
+    margin-top: 20px;
+    padding: 5px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #6756F5;
+    color: white;
+    cursor: pointer;
+}
+.login-media{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+}
+.media-text{
+    display: inline-block;
+    color:  #8c81e9;
+    text-align: center;
+    margin-top: 10px;
+}
+.login-media img{
+    width: 100px;
+}
+.redirect-login{
+    font-size: 15px;
+    padding: 10px;
+    color: #56f578c9;
+}
+.redirect-login i{
+    padding-right: 4px;
+}
+.line{
+    display: none;
+}
+/* Responsive */
+
+@media only screen and (max-width: 830px) {
+    .header{
+        font-size: 20px;
+    }
+    .form-control{
+        width: 100%;
+        box-shadow: none;
+        flex-direction: column;
+        padding: 20px;
+    }
+    .form{
+        width: 100%;
+    }
+    .login-media img,.login-media span{
+        display: none;
+    }
+    .login-media{
+        margin-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.311);
+        width: 100%;
+
+    }
+    .redirect-login{
+
+        margin-top: 10px;
+    }
+
+
+}
+@media only screen and (max-width: 440px) {
+    .form-control{
+        padding: 10px;
+    }
+    .name-form{
+        flex-direction: column;
+    }
+    .name{
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+    .mail-form{
+        padding: 5px;
+    }
+    .input-gp{
+        margin: 0;
+    }
+    .mail{
+        width: 60%;
+    }
+    .ghostmail{
+        width: 40%;
+        min-width: 100px;
+    }
+}

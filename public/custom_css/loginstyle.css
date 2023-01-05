@@ -1,0 +1,137 @@
+
+:root{
+    --mainColor:#6756F5;
+    --bgColor:#1B1E32;
+    }
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .me-2{
+        margin-right: 10px;
+    }
+    .logo {
+    color: var(--mainColor);
+    font-size: 27px;
+    width: auto;
+    text-align: center;
+    padding: 10px 0;
+    user-select: none;
+    }
+    body{
+        color: white;
+
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background-color: var(--bgColor);
+    }
+    .container{
+        width: 100%;
+
+    }
+    .header{
+        margin-bottom: 30px;
+    }
+    .form-control{
+        width: 400px;
+        padding: 30px;
+        margin:150px auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    }
+    .text-danger{
+        color: #F55656;
+    }
+    .header-text{
+        text-align: center;
+        font-weight: 100;
+    }
+    .error-msg{
+        display: block;
+        padding: 5px;
+        display: none;
+        font-size: 14px;
+    }
+    .input{
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.266);
+        outline: none;
+        user-select: none;
+    }
+    .input-container{
+        margin-bottom: 10px;
+    }
+    .header-error{
+        text-align: center;
+        display: inline-block;
+        padding: 5px;
+
+        margin-bottom: 20px;
+    }
+   input::placeholder{
+        color:#ffffff97;
+   }
+    input:focus{
+        border:1px solid #6756F5 ;
+
+    }
+    .fg-pw{
+        color: #ffffff54;
+        display: block;
+        padding: 10px;
+        font-size: 14px;
+
+    }
+    .check{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        color: #ffffff54;
+    }
+    .checkbox input{
+        display: inline-block;
+        margin-right: 6px;
+    }
+    .button-login{
+        text-align: center;
+        margin-top: 20px;
+    }
+    .button-login button{
+        padding: 5px 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 0;
+        background-color: #6756F5;
+        color: white;
+        cursor: pointer;
+    }
+    .button-reg{
+        text-align: left;
+        margin-top: 30px;
+
+    }
+    .register{
+        color: #56f578c9;
+        font-size: 15px;
+    }
+    @media only screen and (max-width:420px){
+
+        .form-control{
+            width: 100%;
+            box-shadow: none;
+        }
+        .input{
+            padding: 15px 10px;
+        }
+    }
+    @media only screen and (max-width:310px){
+
+        .form-control{
+            padding: 10px;
+        }
+    }

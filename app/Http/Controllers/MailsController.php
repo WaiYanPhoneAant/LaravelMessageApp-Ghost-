@@ -73,6 +73,10 @@ class MailsController extends Controller
 
        }
     }
+    public function SendedMailview(){
+        return view('user.mailboard.sended');
+    }
+
 
 // ------------------------------------end Ajax---------------------------------
     private function messageCreationData($request){

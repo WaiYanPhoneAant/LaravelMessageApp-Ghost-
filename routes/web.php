@@ -51,10 +51,12 @@ Route::middleware([
             //ajax get sended mail
             Route::get('/getSendMail',[MailsController::class,'sendMails']);
 
-
             // create mails
             Route::get('/send',[MailsController::class,'sendMail'])->name('sendMail');
 
+        });
+        Route::prefix('sended')->group(function () {
+            Route::get('/view',[MailsController::class,'SendedMailview'])->name('SendedMailview');
         });
 
     });

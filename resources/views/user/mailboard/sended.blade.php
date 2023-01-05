@@ -1,7 +1,5 @@
 @extends('user.mailboard.master.master')
 
-
-
 @push('JavaScript')
 
 
@@ -10,7 +8,7 @@
 $(document).ready(function () {
     $test='test';
     $interval=true;
-    ajax(mailsDisplay);
+    ajax(mailsDisplay,{data:'send'},'/mail/getSendMail');
     //security
     function escapeHtml(text) {
         var map = {
@@ -52,10 +50,12 @@ $(document).ready(function () {
                 $sortVal=$('.sort').val()
                 if($sortVal!='all'){
                     $data={'data':$sortVal};
+
                     ajax(mailappend,$data,'/mail/getMailSorting');
 
                 }else{
-                    ajax(mailappend);
+                    
+                    ajax(mailappend,{data:'send'},'/mail/getSendMail');
 
                 }
             }
@@ -302,8 +302,4 @@ $(document).ready(function () {
 
 
 @endpush
-
-
-
-
 

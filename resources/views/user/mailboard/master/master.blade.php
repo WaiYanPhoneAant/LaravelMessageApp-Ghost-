@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#1B1E32" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ghost Mail</title>
+    <link rel="icon" type="image/x-icon" href="{{asset('asset/img/media.png')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{asset('custom_css/mailboard.css')}}">
 </head>
@@ -39,7 +40,7 @@
         </div>
         <div class="list">
             <ul class="menu-list">
-                <a href="/"><li class="menu-item inbox {{$path=='dashboard'?'active':''}}"><span><i class="fa-solid fa-inbox me-2"></i>Inbox</span> <span class="badge-inbox unread">0</span></li></a>
+                <a href="/"><li class="menu-item inbox {{$path=='dashboard'?'active':''}}"><span><i class="fa-solid fa-inbox me-2"></i>Inbox</span> <span class="badge-inbox {{$path=='dashboard'?'unread':'d-none'}} ">0</span></li></a>
                 <a href="{{ route('SendedMailview') }}"><li class="menu-item send {{$path=='view'?'active':''}}"><span><i class="fa-solid fa-paper-plane me-2"></i>Send</span></li></a>
                 <li class="menu-item archive"><span><i class="fa-solid fa-box-archive me-2"></i>Archive</span></li>
                 <li class="menu-item trash"><span><i class="fa-solid fa-trash me-2"></i>Trash</span></li>
@@ -179,6 +180,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.2/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{{asset('js/mailboard.js')}}"></script>
+<script>
+        function escapeHtml(text) {
+        var map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        };
+        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+    }
+</script>
 @stack('JavaScript');
 
 

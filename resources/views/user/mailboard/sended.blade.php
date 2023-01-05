@@ -5,21 +5,13 @@
 
 <script>
 
+
 $(document).ready(function () {
     $test='test';
     $interval=true;
     ajax(mailsDisplay,{data:'send'},'/mail/getSendMail');
     //security
-    function escapeHtml(text) {
-        var map = {
-            '&': '&amp;',
-            '<': '&lt;',
-            '>': '&gt;',
-            '"': '&quot;',
-            "'": '&#039;'
-        };
-        return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-    }
+
 
     //to show mails
     function mailsDisplay(mails) {

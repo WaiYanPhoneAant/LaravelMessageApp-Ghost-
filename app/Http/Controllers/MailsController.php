@@ -68,7 +68,7 @@ class MailsController extends Controller
         }
     }
     public function sendMails(Request $request){
-       if($request->data=='send'){
+       if($request->sendData=='send'){
             return $this->getMail('','send');
 
        }

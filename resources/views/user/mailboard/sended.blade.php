@@ -54,7 +54,6 @@ $(document).ready(function () {
                     ajax(mailappend,$data,'/mail/getMailSorting');
 
                 }else{
-                    
                     ajax(mailappend,{data:'send'},'/mail/getSendMail');
 
                 }
@@ -195,7 +194,7 @@ $(document).ready(function () {
         if($value.trim()!=''){
             $.ajax({
                 type:'get',
-                url :'mail/getMailsAddress',
+                url :'../mail/getMailsAddress',
                 data:{'mail':$value},
                 dataType:'json',
                 success:(mails)=>{

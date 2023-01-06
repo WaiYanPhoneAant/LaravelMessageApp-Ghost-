@@ -259,7 +259,7 @@
         // auto update data
         function autoUpdate() {
             return setInterval(() => {
-                
+
                 if ($interval) {
                     $sortVal = $('.sort').val()
                     if ($sortVal != 'all') {

@@ -22,7 +22,7 @@ class MailsController extends Controller
 //---------------------------------- Ajax -------------------------------------
     // GET MAILS
     public function getMail($sortCond='',$getData='receive'){
-
+        logger($getData);
         $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
             ->when($getData=='receive',function($query){
                 $query->where('mails.receiver',Auth::user()->ghostmail);
@@ -59,7 +59,6 @@ class MailsController extends Controller
     }
 
     public function sort(Request $request){
-        logger($request['data']);
         if($request['data']=='all'){
             return $this->getMail('all');
         }elseif ($request['data']=='read') {

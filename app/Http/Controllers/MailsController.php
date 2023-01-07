@@ -21,9 +21,9 @@ class MailsController extends Controller
 
 //---------------------------------- Ajax -------------------------------------
     // GET MAILS
-    public function getMail($sortCond='',$getData='receive',$key=''){
 
-        $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
+    public function getMail($sortCond='',$getData='receive',$key=''){
+            $data=$this->mails()
             ->when($key,function($query,$key){
                 $query->orwhere('mails.subject','like','%'.$key.'%')
                 ->orwhere('mails.message','like','%'.$key.'%');
@@ -39,11 +39,15 @@ class MailsController extends Controller
             })->when($sortCond=='unread',function($query){
                 $query->where('mails.read_status',0);
             })
-            ->leftJoin('users', 'users.ghostmail', 'mails.sender')
-            ->Orderby('mails.id','desc')
             ->get();
 
         return response()->json(["data"=>$data], 200);
+    }
+    private function mails(){
+        $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
+        ->leftJoin('users', 'users.ghostmail', 'mails.sender')
+        ->Orderby('mails.id','desc');
+        return $data;
     }
     public function read_status(Request $data){
         Mails::where('id',$data->mail_id)->update(['read_status'=>1]);

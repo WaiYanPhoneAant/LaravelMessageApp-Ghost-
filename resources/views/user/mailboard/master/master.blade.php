@@ -507,7 +507,7 @@
                 $('.header').text('Inbox');
                 $('.mails-warp').text('');
                 $('.readmore').text('');
-                // ajax(mailsDisplay);
+                ajax(mailsDisplay);
 
             }
 
@@ -528,7 +528,7 @@ $('.searchInput').keyup(()=>{
 
     })
 </script>
-
+@stack('jsExtra')
 
 
 </html>

@@ -21,13 +21,14 @@ class MailsController extends Controller
 
 //---------------------------------- Ajax -------------------------------------
     // GET MAILS
-
+    private function mail(){
+        $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
+            ->leftJoin('users', 'users.ghostmail', 'mails.sender')
+            ->Orderby('mails.id','desc');
+            return $data;
+    }
     public function getMail($sortCond='',$getData='receive',$key=''){
-            $data=$this->mails()
-            ->when($key,function($query,$key){
-                $query->orwhere('mails.subject','like','%'.$key.'%')
-                ->orwhere('mails.message','like','%'.$key.'%');
-            })
+            $data=$this->mail()
             ->when($getData=='receive',function($query){
                 $query->where('mails.receiver',Auth::user()->ghostmail);
             })
@@ -39,15 +40,10 @@ class MailsController extends Controller
             })->when($sortCond=='unread',function($query){
                 $query->where('mails.read_status',0);
             })
+
             ->get();
 
         return response()->json(["data"=>$data], 200);
-    }
-    private function mails(){
-        $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
-        ->leftJoin('users', 'users.ghostmail', 'mails.sender')
-        ->Orderby('mails.id','desc');
-        return $data;
     }
     public function read_status(Request $data){
         Mails::where('id',$data->mail_id)->update(['read_status'=>1]);
@@ -84,8 +80,20 @@ class MailsController extends Controller
     public function SendedMailview(){
         return view('user.mailboard.sended');
     }
-    public function search(Request $data){
-        return $this->getMail($data['sort'],$data['route'],$data['data']);
+    public function search(Request $searchData){
+        $datad=$this->mail()
+            ->where('mails.message','like','%'.$searchData['data'].'%')
+            ->when($searchData['sort']=='read',function($query){
+                $query->where('mails.read_status',1);
+            })->when($searchData['sort']=='unread',function($query){
+                $query->where('mails.read_status',0);
+            });
+        if($searchData['route']=='receive'){
+            $data=$datad->where('mails.receiver',Auth::user()->ghostmail)->get();
+        }else{
+            $data=$datad->where('mails.sender',Auth::user()->ghostmail)->get();
+        }
+        return response()->json(["data"=>$data], 200);
     }
 
 // ------------------------------------end Ajax---------------------------------

@@ -21,9 +21,13 @@ class MailsController extends Controller
 
 //---------------------------------- Ajax -------------------------------------
     // GET MAILS
-    public function getMail($sortCond='',$getData='receive'){
-        logger($getData);
+    public function getMail($sortCond='',$getData='receive',$key=''){
+
         $data=Mails::select('*','mails.id as mail_id','users.firstName as name','users.id as user_id','users.image as img')
+            ->when($key,function($query,$key){
+                $query->orwhere('mails.subject','like','%'.$key.'%')
+                ->orwhere('mails.message','like','%'.$key.'%');
+            })
             ->when($getData=='receive',function($query){
                 $query->where('mails.receiver',Auth::user()->ghostmail);
             })
@@ -51,9 +55,9 @@ class MailsController extends Controller
         $check=User::where('ghostmail',$request->mail)->exists();
         $selfMailCheck=Auth::user()->ghostmail==$request->mail;
         if($check && !$selfMailCheck){
-            return response()->json(['status'=>'true'], 200);
+            return response()->json(['data'=>'true'], 200);
         }else{
-            return response()->json(['status'=>'false'], 200);
+            return response()->json(['data'=>'false'], 200);
         }
 
     }
@@ -76,7 +80,9 @@ class MailsController extends Controller
     public function SendedMailview(){
         return view('user.mailboard.sended');
     }
-
+    public function search(Request $data){
+        return $this->getMail($data['sort'],$data['route'],$data['data']);
+    }
 
 // ------------------------------------end Ajax---------------------------------
     private function messageCreationData($request){

@@ -253,7 +253,7 @@
                     )
             }
 
-            autoUpdate();
+            // autoUpdate();
 
         }
         // auto update data
@@ -433,15 +433,10 @@
             $value = $('.g_mail').val();
 
             if ($value.trim() != '') {
-                $.ajax({
-                    type: 'get',
-                    url: 'mail/getMailsAddress',
-                    data: {
-                        'mail': $value
-                    },
-                    dataType: 'json',
-                    success: (mails) => {
-                        if (mails.status == 'true') {
+                $data={'mail': $value},
+                ajax(malivalid,$data,'../mail/getMailsAddress');
+                function malivalid(mails){
+                    if (mails == 'true') {
                             // console.log('true');
                             $('.mail_error').html('');
                             $mail_address = true;
@@ -450,9 +445,7 @@
                             $('.mail_error').html('* Mail Not found ');
                             $mail_address = false;
                         }
-                    },
-
-                })
+                }
             } else {
                 $('.mail_error').html('');
             }
@@ -487,9 +480,11 @@
                 };
 
                 if ($currentRoute == 'inbox') {
-                    ajax(mailappend, $data, '/mail/getMailSorting');
+                    ajax(mailSort,$data,'/mail/getMailSorting');
+
                 } else if ($currentRoute == 'send') {
-                    ajax(mailappend, $data, '/mail/getSendMail');
+                    ajax(mailSort,$data,'/mail/getSendMail');
+                    // ajax(mailappend, $data, '/mail/getSendMail');
                 }
 
                 function mailSort(mails) {
@@ -517,6 +512,18 @@
             }
 
         })
+
+
+$('.searchInput').keyup(()=>{
+    $route=$currentRoute=='inbox'?'receive':'send';
+    $data={data:$('.searchInput').val(),sort:$('.sort').val(),route:$route}
+    ajax(name,$data,'/search/searchInbox')
+    function name(mail){
+        $('.mails-warp').text('');
+        $('.readmore').text('');
+        mailsDisplay(mail);
+    }
+})
 
 
     })

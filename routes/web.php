@@ -57,6 +57,10 @@ Route::middleware([
         });
         Route::prefix('sended')->group(function () {
             Route::get('/view',[MailsController::class,'SendedMailview'])->name('SendedMailview');
+
+        });
+        Route::prefix('search')->group(function () {
+            Route::get('/searchInbox/',[MailsController::class,'search']);
         });
 
     });

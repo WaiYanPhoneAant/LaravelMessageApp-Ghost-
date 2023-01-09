@@ -210,6 +210,7 @@
         $currentRoute = `@stack('route')`;
         $test = 'test';
         $interval = true;
+        $auto=true;
         // @stack('mailsDisplay');
 
         if ($currentRoute == 'inbox') {
@@ -253,14 +254,14 @@
                     )
             }
 
-            // autoUpdate();
+            autoUpdate();
 
         }
         // auto update data
         function autoUpdate() {
             return setInterval(() => {
-
-                if ($interval) {
+                if($auto==true){
+                    if ($interval) {
                     $sortVal = $('.sort').val()
                     if ($sortVal != 'all') {
                         $data = {
@@ -282,7 +283,9 @@
                             }, '/mail/getSendMail');
                         }
                     }
+                    }
                 }
+
 
             }, 1000);
         }
@@ -349,8 +352,8 @@
                         <span class=" date me-2">jun/2022</span>
 
                         ${$currentRoute=='inbox'?
-                        data.read_status==0 ?`<span class="unread-spot"><i class="fa-solid fa-circle me-2"></i></span>`:''
-                    :`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`}
+                            data.read_status==0 ?`<span class="unread-spot"><i class="fa-solid fa-circle me-2"></i></span>`:''
+                        :data.read_status==0 ?`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`:'<span class="read-spot fs-2"><i class="fa-solid fa-check-double"></i></span>'}
 
 
                         <!-- <span class="delete-btn min-btn"><i class="fa-solid fa-trash me-2"></i></span> -->
@@ -363,7 +366,7 @@
                 <div class="tools mails-item">
                     ${$currentRoute=='inbox'?
                         data.read_status==0 ?`<span class="unread-spot"><i class="fa-solid fa-circle me-2"></i></span>`:''
-                    :`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`}
+                        :data.read_status==0 ?`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`:'<span class="read-spot fs-2"><i class="fa-solid fa-check-double me-2"></i></span>'}
                     <span class="archive-btn min-btn"><i class="fa-solid fa-box-archive me-2"></i></span>
                     <span class="delete-btn min-btn"><i class="fa-solid fa-trash me-2"></i></span>
 
@@ -487,7 +490,17 @@
                     // ajax(mailappend, $data, '/mail/getSendMail');
                 }
 
-                function mailSort(mails) {
+
+            } else {
+                $('.header').text('Inbox');
+                $('.mails-warp').text('');
+                $('.readmore').text('');
+                ajax(mailsDisplay);
+
+            }
+
+        })
+ function mailSort(mails) {
 
                     $('.mails-warp').text('');
                     $('.readmore').text('');
@@ -503,27 +516,18 @@
                     }
 
                 }
-            } else {
-                $('.header').text('Inbox');
-                $('.mails-warp').text('');
-                $('.readmore').text('');
-                ajax(mailsDisplay);
 
-            }
-
-        })
-
-
-$('.searchInput').keyup(()=>{
-    $route=$currentRoute=='inbox'?'receive':'send';
-    $data={data:$('.searchInput').val(),sort:$('.sort').val(),route:$route}
-    ajax(name,$data,'/search/searchInbox')
-    function name(mail){
-        $('.mails-warp').text('');
-        $('.readmore').text('');
-        mailsDisplay(mail);
-    }
-})
+    $('.searchInput').keyup(()=>{
+        $searchKey=$('.searchInput').val();
+        if ($searchKey.trim()!="") {
+            $auto=false;
+        }else{
+            $auto=true;
+        }
+        $route=$currentRoute=='inbox'?'receive':'send';
+        $data={data:$searchKey,sort:$('.sort').val(),route:$route}
+        ajax(mailSort,$data,'/search/searchInbox');
+    })
 
 
     })

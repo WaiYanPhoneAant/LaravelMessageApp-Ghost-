@@ -426,6 +426,10 @@ nav a{
     font-size: 10px;
     color: var(--activeColor);
 }
+.read-spot{
+    font-size: 10px;
+    color: var(--success);
+}
 .unread{
     padding:3px 10px ;
     background-color: #00000047;

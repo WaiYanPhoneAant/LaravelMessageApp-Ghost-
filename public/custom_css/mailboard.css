@@ -329,8 +329,15 @@ nav a{
     color: white;
     margin-bottom: 20px;
 }
+.key-display{
+    padding: 8px;
+    background-color: #d6d5d92f;
+    border-radius: 10px;
+    user-select: none;
+}
 .condition i{
-    padding:0 10px;
+    color: var(--danger);
+    padding:0 3px;
 }
 .from{
   color: #56F579;
@@ -478,6 +485,7 @@ nav a{
     padding-bottom: 20px;
     text-align: left;
     text-align:left;
+    line-break: anywhere;
     font-size: 16px;
     color: #ffffffaa;
 }

@@ -128,8 +128,8 @@
         </section>
 
 
-        <div class="condition">
-            From <i class="from fa-solid fa-sort-down"></i>
+        <div class="condition search-key">
+            {{-- From <i class="from fa-solid fa-sort-down"></i> --}}
         </div>
         <div class="mails-container">
             @if ($errors->any())
@@ -147,8 +147,8 @@
             </div>
 
         </div>
-        <section class="ReadPage test">
-            <div class="readmore">
+        <section class="ReadPage test readmore">
+            <div class="">
             </div>
         </section>
         <section class="mail-create">
@@ -169,6 +169,7 @@
                         <label for="#mail-address">Subject</label>
                         <input type="text" name="subject" placeholder="Subject" class="mail-address">
                     </div>
+
                     <div class="input-gp">
                         <label for="#mail-address">Messages</label>
                         <textarea name="message" class="mail-address text-mes" id="" cols="30" rows="10"></textarea>
@@ -305,7 +306,7 @@
                 });
                 if (mails.length > $oriMailsLength) {
                     $newMails = mails.length - $oriMailsLength;
-
+                    $('.noMail').text('');
                     for (let i = 0; i < $newMails; i++) {
 
                         $mailsort = $newMails - (i + 1);
@@ -387,19 +388,19 @@
                         <span class="delete-btn"><i class="fa-solid fa-trash"></i></span>
                     </div>
                 </div>
-                <div class="mails-info" id=''>
+
                     <div class="mail-header">
                         <h2>
                             ${data.subject?escapeHtml(data.subject):'No Subject'}
                         </h2>
                         <span class="mail-date">
-                            12-10-2022
+                            ${new Date(data.created_at).getFullYear()}
                         </span>
                     </div>
                     <div class="mail-text">
-                        ${escapeHtml(data.message)}
+                        <p>${escapeHtml(data.message)}</p>
                     </div>
-                </div>
+
 
             </div>
             `
@@ -521,8 +522,10 @@
         $searchKey=$('.searchInput').val();
         if ($searchKey.trim()!="") {
             $auto=false;
+            $('.search-key').html(`<div class="key-display"><a href="/"><i class="fa-regular fa-circle-xmark"></i></a>${$searchKey}</div>`)
         }else{
             $auto=true;
+            $('.search-key').html('')
         }
         $route=$currentRoute=='inbox'?'receive':'send';
         $data={data:$searchKey,sort:$('.sort').val(),route:$route}

@@ -82,7 +82,10 @@ class MailsController extends Controller
     }
     public function search(Request $searchData){
         $datad=$this->mail()
-            ->where('mails.message','like','%'.$searchData['data'].'%')
+            ->where(function($query){
+                $query->orWhere('mails.subject','like','%'.request()['data'].'%')
+                ->orWhere('mails.message','like','%'.request()['data'].'%');
+            })
             ->when($searchData['sort']=='read',function($query){
                 $query->where('mails.read_status',1);
             })->when($searchData['sort']=='unread',function($query){

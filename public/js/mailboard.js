@@ -43,6 +43,7 @@ function readMore(id) {
     mailConteinerTag.style.display='none';
     ReadPageTag.style.display='block';
     floatbtnTag.style.display='none';
+    seoTag.style.display='none';
     headerTag.textContent='Message';
 
 }
@@ -64,6 +65,7 @@ function back(id) {
     unique.classList.add('d-none');
     mailConteinerTag.style.display='block';
     ReadPageTag.style.display='none';
+    seoTag.style.display='flex';
     floatbtnTag.style.display='flex';
     headerTag.textContent='Inbox';
 
@@ -135,103 +137,4 @@ for (const menu of menuItemTag) {
 // for (const i of it) {
 //     console.log(i.classList.add('active'));
 // }
-
-// jquery version
-
-
-
-// $menuTag=$('.menu-icon');
-// $headerTag=$('.header');
-// $crossTag=$('.cross-icon');
-// $navTag=$('nav');
-// $mailsTag=document.querySelectorAll('.mails-warp');
-// $ReadPageTag=$('.ReadPage');
-// $mailConteinerTag=$('.mails-container');
-// $mailsCreateTag=$('.mail-create')
-// $backbtnTag=$('.back-btn');
-// $floatbtnTag=$('.createFloat-btn');
-// $btnbackTag=$('.btn-back');
-// $seoTag=$('.seo');
-// $dropper=$('.dropper');
-// $dropboxTag=$('.dropbox');
-
-// $menuTag.click(()=>{
-
-//     $menuTagStyle=$menuTag.css('display');
-//     if($menuTagStyle!='none'){
-//         $navTag.css('left','0');
-//         $('.mobile-nav').css('visibility','visible')
-//         document.querySelector('.mobile-nav').style.visibility='visible';
-//     }
-
-// })
-// // $menuTag.addEventListener('click',()=>{
-
-// // })
-// // $crossTag.addEventListener('click',crossFn)
-// $crossTag.click(()=>{crossFn()});
-// function crossFn(){
-
-
-//     if($('.crossTag').css('display')!='none'){
-//         $navTag.css('left','-100%')
-//         $('.mobile-nav').css('visibility','visible');
-
-//     }
-// }
-// function readMore(id) {
-
-//     $unique=$(`#m${id}`);
-//     $unique.classList.remove('d-none');
-//     $mailConteinerTag.style.display='none';
-//     $ReadPageTag.style.display='block';
-//     $floatbtnTag.style.display='none';
-//     $headerTag.textContent='Message';
-
-// }
-
-
-// $floatbtnTag.click(()=>{createSection()});
-// $btnbackTag.click(()=>{})
-// function back(id) {
-//     $unique=$(`#m${id}`);
-//     $unique.classList.add('d-none');
-//     $mailConteinerTag.style.display='block';
-//     $ReadPageTag.style.display='none';
-//     $floatbtnTag.style.display='flex';
-//     $headerTag.textContent='Inbox';
-
-// }
-// function createSection(){
-//     $mailConteinerTag.style.display='none';
-//     $seoTag.style.display="none";
-//     $headerTag.textContent='Create Message';
-//     $mailsCreateTag.style.display='block';
-//     $floatbtnTag.style.display='none';
-// }
-// function hidecreateSection(){
-//     $mailConteinerTag.style.display='block';
-//     $seoTag.style.display="flex";
-//     $headerTag.textContent='Inbox';
-//     $mailsCreateTag.style.display='none';
-//     $floatbtnTag.style.display='flex';
-// }
-// $dropper.addEventListener('click',()=>{
-//     if($dropboxTag.style.display=="block"){
-//         $dropboxTag.style.display="none";
-//     }else{
-//         $dropboxTag.style.display="block";
-//     }
-// });
-
-// window.addEventListener('click',(e)=>{
-//     if($dropboxTag.style.display=='block'){
-//         if($dropboxTag.contains(e.target) ||dropper.contains(e.target)){
-//             return;
-//         }else{
-//             $dropboxTag.style.display="none";
-//         };
-//     }
-// })
-
 

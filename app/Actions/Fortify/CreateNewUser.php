@@ -21,10 +21,11 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $input['ghostmail']=$input['ghostmail'].'@ghost.com';
         Validator::make($input, [
             'firstName' => ['required', 'string', 'max:255'],
             'secondName' => ['required', 'string', 'max:255'],
-            'ghostmail' => ['required', 'string',  'max:255', 'unique:users'],
+            'ghostmail' => ['required', 'string',  'max:255', "unique:users"],
             'password' => $this->passwordRules(),
             'password_confirmation' => ['required'],
         ])->validate();
@@ -32,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
         return User::create([
             'firstName' => $input['firstName'],
             'secondName' => $input['secondName'],
-            'ghostmail' => $input['ghostmail'].'@ghost.com',
+            'ghostmail' => $input['ghostmail'],
             'password' => Hash::make($input['password']),
         ]);
     }

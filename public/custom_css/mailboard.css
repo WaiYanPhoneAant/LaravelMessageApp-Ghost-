@@ -396,6 +396,7 @@ nav a{
 
     padding:2px 10px;
     font-size: 18px;
+
 }
 
 .message{
@@ -432,10 +433,13 @@ nav a{
 .unread-spot{
     font-size: 10px;
     color: var(--activeColor);
+    display: block;
 }
 .read-spot{
-    font-size: 10px;
+    font-size: 11px;
     color: var(--success);
+    display: block;
+    padding: 5px;
 }
 .unread{
     padding:3px 10px ;
@@ -616,7 +620,9 @@ nav a{
         padding-top: 10px;
     }
     .se-name{
+        padding-bottom: 18px;
         font-size: 14px;
+        display: block;
     }
 }
 
@@ -745,10 +751,9 @@ nav a{
     .message p{
         position: relative;
         top: -20px;
+        width: 300px;
     }
-    .mail{
-        display: none;
-    }
+
     .filter{
         margin-right: 8px;
     }
@@ -761,6 +766,9 @@ nav a{
     }
     .filter{
         margin-right: 5px;
+    }
+    .message p{
+        width: 200px;
     }
 }
 @media only screen and (max-width:330px){

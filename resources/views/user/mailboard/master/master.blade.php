@@ -9,6 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ghost Mail</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('asset/img/media.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('asset/img/media.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('asset/img/media.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('asset/img/media.png') }}">
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -71,7 +75,7 @@
     </nav>
     <section class="inbox-section">
         <header class="inbox-header">
-            <h1 class="header">Inbox</h1>
+            <h1 class="header">@yield('header')</h1>
             <div class="logo res-logo">
                 <i class="fa-solid fa-ghost me-2"></i><span>Ghost</span>
             </div>
@@ -339,6 +343,7 @@
         }
         //html mails tags
         function mailsTag(data) {
+            $date=new Date(data.created_at);
             return `
                 <div class="mails" id="${data.mail_id}" onclick="readMore(${data.mail_id});">
 
@@ -350,8 +355,8 @@
                     <span class="se-name">${data.name} <span class="p-mail mail">${data.sender}</span></span>
                     <div class="res-tools mails-item">
 
-                        <span class=" date me-2">jun/2022</span>
 
+                        <span class="date">${$date.toLocaleDateString()}</span>
                         ${$currentRoute=='inbox'?
                             data.read_status==0 ?`<span class="unread-spot"><i class="fa-solid fa-circle me-2"></i></span>`:''
                         :data.read_status==0 ?`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`:'<span class="read-spot fs-2"><i class="fa-solid fa-check-double"></i></span>'}
@@ -368,8 +373,8 @@
                     ${$currentRoute=='inbox'?
                         data.read_status==0 ?`<span class="unread-spot"><i class="fa-solid fa-circle me-2"></i></span>`:''
                         :data.read_status==0 ?`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`:'<span class="read-spot fs-2"><i class="fa-solid fa-check-double me-2"></i></span>'}
-                    <span class="archive-btn min-btn"><i class="fa-solid fa-box-archive me-2"></i></span>
-                    <span class="delete-btn min-btn"><i class="fa-solid fa-trash me-2"></i></span>
+                        <span class="date">${$date.toLocaleDateString()}</span>
+
 
                 </div>
 
@@ -379,13 +384,14 @@
 
         //htmm readmor tags
         function readmore(data) {
+            $date=new Date(data.created_at);
             return `
             <div class="d-none" id="m${data.mail_id}">
                 <div class="btn-gp d-none" >
                     <span class="back-btn" onclick="back(${data.mail_id})"> <i class="me-2 fa-solid fa-arrow-left"></i>Back</span>
                     <div class="action-btn">
-                        <span class="archive-btn me-2"><i class="fa-solid fa-box-archive"></i></span>
-                        <span class="delete-btn"><i class="fa-solid fa-trash"></i></span>
+                        <a href="/"><span class="archive-btn me-2"><i class="fa-solid fa-box-archive"></i></span></a>
+                        <a href="/"><span class="delete-btn"><i class="fa-solid fa-trash"></i></span></a>
                     </div>
                 </div>
 
@@ -394,7 +400,7 @@
                             ${data.subject?escapeHtml(data.subject):'No Subject'}
                         </h2>
                         <span class="mail-date">
-                            ${new Date(data.created_at).getFullYear()}
+                           ${$date.toLocaleString('en-US')}
                         </span>
                     </div>
                     <div class="mail-text">

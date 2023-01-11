@@ -17,6 +17,17 @@ const dropper=qs('.dropper');
 const dropboxTag=qs('.dropbox');
 const alertDark=qs('.alert-dark')
 const menuItemTag=document.getElementsByClassName('menu-item');
+
+// noti pop up
+const crossBtn=qs('.cross-btn');
+const notiAlertTag=qs('.notiAlert');
+const notiwh=notiAlertTag.offsetWidth+50;
+const alertname=qs('.alertname');
+const alertMail=qs('.alertMail');
+const notiText=qs('.notiText');
+const image=qs('.Info-image');
+
+
 function qs(el) {
     return document.querySelector(el);
 }
@@ -129,15 +140,6 @@ for (const menu of menuItemTag) {
 
 }
 
-    // let cs=document.getElementsByClassName('send');
-    // console.log(cs);
-
-
-// let it=document.getElementsByClassName('menu-item');
-// console.log(it);
-// for (const i of it) {
-//     console.log(i.classList.add('active'));
-// }
 
 function AlertDelete(id) {
     document.querySelectorAll(`.alert-${id}`).forEach(e => {
@@ -151,3 +153,42 @@ function alertCancle(id) {
     });
     alertDark.style.display='none';
 }
+
+function a() {
+    alert('hello');
+}
+
+
+function noti(kind,data) {
+    if(kind=='inbox'){
+        console.log(data)
+        alertname.textContent=data.firstName;
+        alertMail.textContent=data.sender;
+        notiText.textContent=data.message.substr(0,50)+'.....';
+        if(data.image){
+            image.innerHTML=`<img class="pf-img dropper" src="{{ asset('storage/img/test.jpg') }}" alt="admin's profile photo"
+            width="40px" height="40px">`;
+        }else{
+           image.innerHTML=`
+            <div class="Textprofile dropper">
+                ${data.firstName[0]}
+            </div>
+           `
+        }
+        notiAlertTag.addEventListener('click',directReadMore);
+        function directReadMore(){
+            readMore(data.mail_id);
+            dispearNoti();
+        }
+        notiAlertTag.style.top='5%';
+        crossBtn.addEventListener('click',dispearNoti);
+        setTimeout(dispearNoti,3000);
+    }
+}
+
+function dispearNoti(){
+    notiAlertTag.style.top= -notiwh+'px';
+
+}
+
+

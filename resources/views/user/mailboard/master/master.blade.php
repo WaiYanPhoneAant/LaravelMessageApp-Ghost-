@@ -21,6 +21,30 @@
 
 <body>
     <?php $path = request()->segment(count(request()->segments())); ?>
+    {{-- noti alert --}}
+    <section class="notiAlert">
+        <div class="noti">
+            <div class="info-header">
+                <div class="accInfo">
+
+                    <div class="Info-image">
+
+                    </div>
+
+                    <div class="accDetail">
+                        <h3 class="alertname"></h3>
+                        <span class="alertMail"></span>
+                    </div>
+                </div>
+                <div class="cross-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="notiText">
+dfdfdf
+            </div>
+        </div>
+    </section>
     <nav class="mobile-nav">
         <div class="logo">
             <span class="cross-icon"><i class="fa-solid fa-xmark"></i></span>
@@ -315,8 +339,10 @@
                     for (let i = 0; i < $newMails; i++) {
 
                         $mailsort = $newMails - (i + 1);
+
                         $('.mails-warp').prepend(mailsTag(mails[$mailsort]));
                         $('.readmore').append(readmore(mails[$mailsort]));
+                        noti('inbox',mails[$mailsort]);
                     }
 
                 }

@@ -658,6 +658,66 @@ nav a{
     color: #edecf3;
     background-color: var(--danger);
 }
+
+/* noti pop up */
+
+.notiAlert{
+    position: absolute;
+    z-index: 50;
+    width: 300px;
+    height: auto;
+    background-color:#6656f5e2;
+    top: -350px;
+    left: 50%;
+    transform: translate(-150px,0px);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: #3c3f4d 0px 3px 8px;
+    transition: top 1s ease;
+    padding-bottom: 5px;
+}
+.info-header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.accInfo{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.accInfo img{
+    border-radius: 50%;
+}
+.accDetail h3{
+    padding: 1px;
+    font-size: 15px;
+    color: white;
+}
+.accDetail span{
+    display: block;
+    font-size: 13px;
+    text-decoration: underline;
+    color: rgba(222, 222, 222, 0.708);
+}
+.cross-btn{
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+.cross-btn::hover{
+    color: rgba(216, 216, 216, 0.81);
+}
+.notiText{
+    color: rgba(245, 245, 245, 0.733);
+    padding-left: 50px;
+    font-size: 14px;
+    line-break: anywhere;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
 /* responsive */
 @media only screen and (max-width: 1048px) {
     /* nav */
@@ -862,3 +922,5 @@ nav a{
 
     }
 }
+
+

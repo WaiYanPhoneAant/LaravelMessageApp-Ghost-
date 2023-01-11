@@ -118,7 +118,6 @@ class MailsController extends Controller
         ];
     }
     private function sendValid($valiData){
-
         Validator::make($valiData,[
             'ghostmail_rev'=>['required', 'max:255'],
             'subject'=>['max:255'],

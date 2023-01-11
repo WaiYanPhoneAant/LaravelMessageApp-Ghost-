@@ -100,6 +100,14 @@ class MailsController extends Controller
     }
 
 // ------------------------------------end Ajax---------------------------------
+
+    public function DeleteInboxMessage(Request $request)
+    {
+
+        $check=Mails::where('id',$request->id)->where('receiver',Auth::user()->ghostmail)->delete();
+        return back();
+    }
+
     private function messageCreationData($request){
         return [
             'sender'=>Auth::user()->ghostmail,

@@ -414,8 +414,13 @@
                     <div class="del-alert  alert-${data.mail_id}">
                             <h2>Are you sure to delete</h2>
                             <div class="alert-btngp">
-                                <button class="btn alert-cancle" onclick="alertCancle(${data.mail_id})">Cancle</button>
-                                <button class="btn alert-delete">Delete</button>
+                                <form method="POST" action="{{route('deleteMail')}}">
+                                    @csrf
+                                    <input type="button" class="btn alert-cancle" onclick="alertCancle(${data.mail_id})" value="Cancle">
+                                    <button class="btn alert-delete">Delete</button></a>
+                                    <input type="hidden" name="id" value="${data.mail_id}">
+
+                                </form>
                             </div>
                     </div>
             </div>

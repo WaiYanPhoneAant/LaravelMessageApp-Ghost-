@@ -62,6 +62,8 @@ Route::middleware([
         Route::prefix('search')->group(function () {
             Route::get('/searchInbox/',[MailsController::class,'search']);
         });
-
+        Route::prefix('delete')->group(function () {
+            Route::post('/inbox/',[MailsController::class,'DeleteInboxMessage'])->name('deleteMail');
+        });
     });
 

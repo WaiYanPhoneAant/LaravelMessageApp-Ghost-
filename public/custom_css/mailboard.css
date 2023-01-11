@@ -418,7 +418,7 @@ nav a{
 
 .delete-btn{
     color: var(--danger);
-
+    cursor: pointer;
 }
 .error{
     color: var(--danger);
@@ -468,21 +468,38 @@ nav a{
 
 /* ------------------------mail text read --------------------*/
 .ReadPage{
-    width: 100%;
+    /* width: 100%;
     padding: 20px;
     display: none;
     color: white;
     padding:0 20px ;
-    padding-top: 20px;
+
     height: 70vh;
-    overflow-y:scroll ;
+    overflow-y:scroll ; */
+
+
+    width: 100%;
+    padding: 20px;
+    display: none;
+    color: white;
+    padding: 0 20px;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 119px;
 }
 .btn-gp{
+    /* display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px; */
+
+    top: 0px;
     display: flex;
     justify-content: space-between;
     padding-bottom: 40px;
-
-
+    position: relative;
+    position: sticky;
+    background-color: var(--bgColor);
+    padding-top: 20px;
 
 }
 .mail-text{
@@ -595,6 +612,52 @@ nav a{
     border: 0;
 }
 
+
+/* alert pop */
+.alert-dark{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #acacac3d;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 100;
+
+}
+.del-alert{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    border-radius: 5px;
+    height: 130px;
+    transform: translate(-300px,-180px);
+    background-color: var(--bgColor);
+    padding: 18px;
+    display: none;
+    z-index: 150;
+}
+.alert-btngp{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+.btn{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 2px;
+    cursor: pointer;
+}
+.alert-cancle{
+    background-color: aliceblue;
+}
+.alert-delete{
+    color: #edecf3;
+    background-color: var(--danger);
+}
 /* responsive */
 @media only screen and (max-width: 1048px) {
     /* nav */

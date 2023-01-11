@@ -72,6 +72,7 @@
         <div class="nav-copyright">
             <span>&copy; All right reveres by <span class="logo-text">Ghost</span></span>
         </div>
+        <div class="alert-dark"></div>
     </nav>
     <section class="inbox-section">
         <header class="inbox-header">
@@ -362,7 +363,7 @@
                         :data.read_status==0 ?`<span class="unread-spot fs-2"><i class="fa-solid fa-check me-2 "></i></span>`:'<span class="read-spot fs-2"><i class="fa-solid fa-check-double"></i></span>'}
 
 
-                        <!-- <span class="delete-btn min-btn"><i class="fa-solid fa-trash me-2"></i></span> -->
+
 
                     </div>
                 </div>
@@ -390,8 +391,8 @@
                 <div class="btn-gp d-none" >
                     <span class="back-btn" onclick="back(${data.mail_id})"> <i class="me-2 fa-solid fa-arrow-left"></i>Back</span>
                     <div class="action-btn">
-                        <a href="/"><span class="archive-btn me-2"><i class="fa-solid fa-box-archive"></i></span></a>
-                        <a href="/"><span class="delete-btn"><i class="fa-solid fa-trash"></i></span></a>
+                        <span class="archive-btn me-2"><i class="fa-solid fa-box-archive"></i></span>
+                        <span class="delete-btn deletebtn" onclick="AlertDelete(${data.mail_id})"><i class="fa-solid fa-trash"></i></span>
                     </div>
                 </div>
 
@@ -408,6 +409,15 @@
                     </div>
 
 
+            </div>
+            <div class="alert-dark alert-${data.mail_id}"></div>
+                    <div class="del-alert  alert-${data.mail_id}">
+                            <h2>Are you sure to delete</h2>
+                            <div class="alert-btngp">
+                                <button class="btn alert-cancle" onclick="alertCancle(${data.mail_id})">Cancle</button>
+                                <button class="btn alert-delete">Delete</button>
+                            </div>
+                    </div>
             </div>
             `
         }
@@ -537,6 +547,10 @@
         $data={data:$searchKey,sort:$('.sort').val(),route:$route}
         ajax(mailSort,$data,'/search/searchInbox');
     })
+
+
+
+
 
 
     })

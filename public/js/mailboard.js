@@ -15,6 +15,7 @@ const btnbackTag=qs('.btn-back');
 const seoTag=qs('.seo');
 const dropper=qs('.dropper');
 const dropboxTag=qs('.dropbox');
+const alertDark=qs('.alert-dark')
 const menuItemTag=document.getElementsByClassName('menu-item');
 function qs(el) {
     return document.querySelector(el);
@@ -138,3 +139,15 @@ for (const menu of menuItemTag) {
 //     console.log(i.classList.add('active'));
 // }
 
+function AlertDelete(id) {
+    document.querySelectorAll(`.alert-${id}`).forEach(e => {
+        e.style.display='block';
+    });
+    alertDark.style.display='block';
+}
+function alertCancle(id) {
+    document.querySelectorAll(`.alert-${id}`).forEach(e => {
+        e.style.display='none';
+    });
+    alertDark.style.display='none';
+}

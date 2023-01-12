@@ -329,15 +329,18 @@ nav a{
     color: white;
     margin-bottom: 20px;
 }
+.condi{
+    padding: 8px;
+}
 .key-display{
     padding: 8px;
-    background-color: #d6d5d92f;
+    border: 1px solid var(--mainColor);
     border-radius: 10px;
     user-select: none;
 }
 .condition i{
     color: var(--danger);
-    padding:0 3px;
+    padding:0 5px;
 }
 .from{
   color: #56F579;
@@ -516,9 +519,14 @@ nav a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    line-break: anywhere;
+    flex-wrap: wrap;
+
 }
 .mail-date{
     color: #ffffff93;
+    flex:0 0 200px;
 }
 .back-btn{
     cursor: pointer;
@@ -835,6 +843,10 @@ nav a{
 
 
     }
+    .mail-date{
+        flex:0 0 170px;
+    }
+
 }
 
 @media only screen and (max-width:640px){
@@ -886,6 +898,7 @@ nav a{
     .filter{
         margin-right: 8px;
     }
+
 }
 
 

@@ -157,7 +157,16 @@ dfdfdf
         </section>
 
 
-        <div class="condition search-key">
+        <div class="condition">
+            <div class="condi">
+
+            </div>
+            <div class="search-key">
+
+            </div>
+
+
+
             {{-- From <i class="from fa-solid fa-sort-down"></i> --}}
         </div>
         <div class="mails-container">
@@ -537,14 +546,14 @@ dfdfdf
                     ajax(mailSort,$data,'/mail/getSendMail');
                     // ajax(mailappend, $data, '/mail/getSendMail');
                 }
-
+                $('.condi').html(`<span class="sub-header">${$sortData}</span>`);
 
             } else {
                 $('.header').text('Inbox');
                 $('.mails-warp').text('');
                 $('.readmore').text('');
                 ajax(mailsDisplay);
-
+                $('.condi').html(``);
             }
 
         })
@@ -569,7 +578,7 @@ dfdfdf
         $searchKey=$('.searchInput').val();
         if ($searchKey.trim()!="") {
             $auto=false;
-            $('.search-key').html(`<div class="key-display"><a href="/"><i class="fa-regular fa-circle-xmark"></i></a>${$searchKey}</div>`)
+            $('.search-key').html(`<div class="key-display"><a href="/"><i class="fa-regular fa-circle-xmark"></i></a>${$searchKey}</div> `)
         }else{
             $auto=true;
             $('.search-key').html('')

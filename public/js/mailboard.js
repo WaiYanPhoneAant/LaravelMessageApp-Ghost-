@@ -17,7 +17,7 @@ const dropper=qs('.dropper');
 const dropboxTag=qs('.dropbox');
 const alertDark=qs('.alert-dark')
 const menuItemTag=document.getElementsByClassName('menu-item');
-
+const conditionTag=qs('.condition');
 // noti pop up
 const crossBtn=qs('.cross-btn');
 const notiAlertTag=qs('.notiAlert');
@@ -27,6 +27,8 @@ const alertMail=qs('.alertMail');
 const notiText=qs('.notiText');
 const image=qs('.Info-image');
 
+
+let currentReadpage;
 
 function qs(el) {
     return document.querySelector(el);
@@ -51,11 +53,13 @@ function crossFn(){
 function readMore(id) {
 
     let unique=qs(`#m${id}`);
+    currentReadpage=qs(`#m${id}`);
     unique.classList.remove('d-none');
     mailConteinerTag.style.display='none';
     ReadPageTag.style.display='block';
     floatbtnTag.style.display='none';
     seoTag.style.display='none';
+    conditionTag.style.display='none';
     headerTag.textContent='Message';
 
 }
@@ -80,6 +84,7 @@ function back(id) {
     seoTag.style.display='flex';
     floatbtnTag.style.display='flex';
     headerTag.textContent='Inbox';
+    conditionTag.style.display="flex";
 
 }
 function createSection(){
@@ -177,6 +182,10 @@ function noti(kind,data) {
         }
         notiAlertTag.addEventListener('click',directReadMore);
         function directReadMore(){
+            if(currentReadpage){
+                console.log(currentReadpage);
+                currentReadpage.style.display='none';
+            }
             readMore(data.mail_id);
             dispearNoti();
         }

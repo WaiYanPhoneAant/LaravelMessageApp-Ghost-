@@ -166,7 +166,7 @@ function a() {
 
 function noti(kind,data) {
     if(kind=='inbox'){
-        console.log(data)
+        notiAlertTag.classList.add(data.mail_id);
         alertname.textContent=data.firstName;
         alertMail.textContent=data.sender;
         notiText.textContent=data.message.substr(0,50)+'.....';

@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="notiText">
-dfdfdf
+
             </div>
         </div>
     </section>
@@ -466,14 +466,25 @@ dfdfdf
             if ($currentRoute == 'inbox') {
                 $id = $(this).attr('id');
                 $(this).find('.unread-spot').css('display', 'none');
-                $.ajax({
+
+            }
+            readSpotAjax($id);
+        });
+        $('.notiAlert').click(()=>{
+            $alertId=$('.notiAlert').attr('class').split(' ')[1];
+            $alertId?readSpotAjax($alertId):'';
+            $('#'+$alertId).find('.unread-spot').css('display', 'none');
+        })
+
+        function readSpotAjax(id){
+            $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: 'mail/read_status',
                     data: {
-                        'mail_id': $id
+                        'mail_id': id
                     },
                     dataType: 'json',
                     success: function() {
@@ -481,10 +492,7 @@ dfdfdf
                     }
 
                 })
-            }
-
-        });
-
+        }
 
         //message create validation
         $mail_address = false;

@@ -16,7 +16,7 @@ class MailsController extends Controller
         $this->sendValid($request->toArray());
         $data=$this->messageCreationData($request);
         Mails::create($data);
-        return back();
+        return back()->with(['value'=>'createSuccess']);
     }
 
 //---------------------------------- Ajax -------------------------------------
@@ -105,7 +105,7 @@ class MailsController extends Controller
     {
 
         $check=Mails::where('id',$request->id)->where('receiver',Auth::user()->ghostmail)->delete();
-        return back();
+        return back()->with(['value'=>'deleteSuccess']);
     }
 
     private function messageCreationData($request){

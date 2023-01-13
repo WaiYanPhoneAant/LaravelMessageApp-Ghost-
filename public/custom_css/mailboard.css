@@ -725,6 +725,13 @@ nav a{
     padding-top: 8px;
     padding-bottom: 10px;
 }
+.success-alert{
+    padding: 10px;
+    color: white;
+}
+.delete{
+    color: #f6f200;
+}
 
 /* responsive */
 @media only screen and (max-width: 1048px) {

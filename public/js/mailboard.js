@@ -159,12 +159,10 @@ function alertCancle(id) {
     alertDark.style.display='none';
 }
 
-function a() {
-    alert('hello');
-}
 
 
-function noti(kind,data) {
+
+function noti(kind,data=[]) {
     if(kind=='inbox'){
         notiAlertTag.classList.add(data.mail_id);
         alertname.textContent=data.firstName;
@@ -189,10 +187,13 @@ function noti(kind,data) {
             readMore(data.mail_id);
             dispearNoti();
         }
-        notiAlertTag.style.top='5%';
-        crossBtn.addEventListener('click',dispearNoti);
-        setTimeout(dispearNoti,3000);
+
+    }else{
+        notiAlertTag.innerHTML=`<div class="success-alert ${kind=='delete'?'delete':'create'}">${data}</div>`;
     }
+    notiAlertTag.style.top='5%';
+    crossBtn.addEventListener('click',dispearNoti);
+    setTimeout(dispearNoti,3000);
 }
 
 function dispearNoti(){

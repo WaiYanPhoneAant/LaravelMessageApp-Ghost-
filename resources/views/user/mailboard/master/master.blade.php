@@ -45,6 +45,7 @@
             </div>
         </div>
     </section>
+    <input type="hidden" class="sessionValue" value={{session('value')}}>
     <nav class="mobile-nav">
         <div class="logo">
             <span class="cross-icon"><i class="fa-solid fa-xmark"></i></span>
@@ -250,6 +251,13 @@
         $test = 'test';
         $interval = true;
         $auto=true;
+        $sessionVal=$('.sessionValue').val();
+        if($sessionVal=='deleteSuccess'){
+            noti('delete','Success Delete Message');
+        }else if($sessionVal=='createSuccess'){
+            noti('create','Successfully Send message')
+        }
+
         // @stack('mailsDisplay');
 
         if ($currentRoute == 'inbox') {

@@ -118,7 +118,7 @@
 
                 <div class="dropbox">
                     <div class="userProfile db-fe">
-                        <a href=""><i class="fa-solid fa-user"></i>Profile</a>
+                        <a href="{{route('profile')}}"><i class="fa-solid fa-user"></i>Profile</a>
 
                     </div>
                     <div class="logout db-fe">

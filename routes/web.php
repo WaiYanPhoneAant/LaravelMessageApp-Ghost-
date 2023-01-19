@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailsController;
+use App\Http\Controllers\profileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,12 @@ Route::middleware([
         Route::prefix('delete')->group(function () {
             Route::post('/inbox/',[MailsController::class,'DeleteInboxMessage'])->name('deleteMail');
         });
+        Route::prefix('/profile')->group(function () {
+            Route::get('/',function(){
+                return view('user.profile.profile');
+            })->name('profile');
+            Route::post('/update',[profileController::class,'profileUpdate'])->name('profileUpdate');
+        });
+
     });
 

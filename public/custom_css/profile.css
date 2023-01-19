@@ -134,6 +134,14 @@ body{
     border: 1px solid var(--success);
     border-radius: 5px;
 }
+.status-error{
+    text-align: center;
+    color: var(--danger);
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--danger);
+    border-radius: 5px;
+}
 .error{
     font-size: 12px;
     padding: 10px 2px;

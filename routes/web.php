@@ -70,7 +70,12 @@ Route::middleware([
             Route::get('/',function(){
                 return view('user.profile.profile');
             })->name('profile');
+
+            Route::get('/restartPasswordPage',function(){
+                return view('user.profile.restartPassword');
+            })->name('restartPasswordPage');
             Route::post('/update',[profileController::class,'profileUpdate'])->name('profileUpdate');
+            Route::post('/restartPassword',[profileController::class,'restartPassword'])->name('restartPassword');
         });
 
     });

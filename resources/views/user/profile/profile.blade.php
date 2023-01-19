@@ -1,4 +1,4 @@
-@extends('user.profile.master.layout');
+@extends('user.profile.master.layout')
 @section('body')
 <div class="profile">
     <div class="profile-header">
@@ -45,13 +45,17 @@
                 <button type="submit" class="change-btn btn" disabled>
                     Save Change
                 </button>
-               <a href="" class="link-btn">
+               <a href="{{route('restartPasswordPage')}}" class="link-btn">
                     Restart Password
                 </a>
             </div>
         </div>
     </form>
 </div>
+@endsection
+
+@section('jquery')
+<script src="{{asset('js/profile.js')}}"></script>
 @endsection
 
 
